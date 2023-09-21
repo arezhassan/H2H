@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bluevariant"
+    android:orientation="vertical"
+    tools:context=".Home">
+
+
+    <FrameLayout
+        android:id="@+id/rider_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="#F8F7F7" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F8F7F7"
+        android:backgroundTintMode="screen"
+        android:elevation="0dp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/ridernavigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_margin="20dp"
+            android:background="@drawable/backgroundnav"
+            android:padding="10dp"
+            app:itemIconSize="40dp"
+            app:itemIconTint="@drawable/select"
+            app:itemRippleColor="#00FFFFFF"
+            app:menu="@menu/ridermenu" />
+    </LinearLayout>
+
+</LinearLayout>

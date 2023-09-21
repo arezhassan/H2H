@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "242773832118",
+    "firebase_url": "https://h2happ-4d18b-default-rtdb.firebaseio.com",
+    "project_id": "h2happ-4d18b",
+    "storage_bucket": "h2happ-4d18b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242773832118:android:33f2470cd4a7cf6411d117",
+        "android_client_info": {
+          "package_name": "com.example.h2h"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "242773832118-clgq741t7tph1ap6icfpaj4ucigurqja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJFbeSrZL1vwjqhItuNUUCyXr3qJD5QQU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "242773832118-clgq741t7tph1ap6icfpaj4ucigurqja.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

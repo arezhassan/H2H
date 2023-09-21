@@ -1,0 +1,77 @@
+<resources>
+    <string name="app_name">Sunshine School System</string>
+    <string name="nav_item1">Dashboard</string>
+    <string name="nav_item2">Assignments</string>
+    <string name="nav_item3">Fees</string>
+    <string name="nav_item4">Grades</string>
+    <string name="nav_item5">Attendance</string>
+    <string name="nav_item6">Forms</string>
+    <string name="nav_item7">Contact Us</string>
+    <string name="nav_item8">Logout</string>
+    <string name="getstartedbtn">Get Started</string>
+    <string name="GetStartedText">The place for fulfilling your dreams!</string>
+    <string name="EnterLogin">Please enter your email and password.</string>
+    <string name="Login">Login</string>
+    <string name="Logout">Logout</string>
+    <string name="StudentName">StudentName</string>
+    <string name="hintemai">Email</string>
+    <string name="hintemap">Password</string>
+    <string name="due">Due Date</string>
+    <string name="status">Status</string>
+    <string name="amount">Amount</string>
+    <string name="Fine">Fine</string>
+    <string name="Attended">Classes Attended</string>
+    <string name="Missed">Classes Missed</string>
+    <string name="Attendancebtn">Check Attendance</string>
+    <string name="selectdate">Select Date to view Attendance</string>
+    <string name="quiz">Quiz</string>
+    <string name="Total">Total Marks:</string>
+    <string name="Obtained">Obtained Marks:</string>
+    <string name="Date">Date:</string>
+    <string name="Upload">Upload PDF/Word File*</string>
+    <string name="AssignmentSubject">Assignment Subject:</string>
+    <string name="AssignmentDescription">Assignment Description:</string>
+    <string name="AssignmentDue">Assignment DueDate:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="select_category_prompt">
+        <item>Electronics</item>
+        <item>Fashion and Beauty</item>
+        <item>Books</item>
+        <item>Furniture</item>
+        <item>Home Appliances</item>
+        <item>Others</item>
+        <!-- Add more categories as needed -->
+    </string-array>
+
+    <string-array name="selectStatus">
+        <item>Select Consignment Status</item>
+        <item>Picked</item>
+        <item>Delivered</item>
+        <item>Failed</item>
+        <!-- Add more categories as needed -->
+    </string-array>
+
+    <string-array name="select_quantity">
+        <item>Select Quantity</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string name="title_activity_rider_first_login">RiderFirstLogin</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+
+</resources>

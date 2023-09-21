@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bluelight">#4DB0FF</color>
+    <color name="blue">#008EFF</color>
+    <color name="bluevariant">#FFFFFF</color>
+    <color name="yellow">#FFED4B</color>
+    <color name="green">#00C808</color>
+    <color name="red">#F44336</color>
+    <color name="darkyellow">#FFBF00</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="appblue">#00A6FF</color>
+    <color name="EtColor">#6600BCD4</color>
+</resources>
