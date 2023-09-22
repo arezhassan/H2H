@@ -146,6 +146,7 @@
         android:layout_gravity="center"
         android:layout_margin="5dp"
         android:background="@drawable/buttonbg"
+        android:drawableEnd="@drawable/baseline_login_24"
         android:fontFamily="sans-serif-medium"
         android:text="@string/Login"
         android:textAllCaps="false"
