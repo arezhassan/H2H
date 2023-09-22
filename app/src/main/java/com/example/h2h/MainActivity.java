@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor; // Initialize SharedPreferences.Editor
 
-    TextView tvRegister;
+    TextView tvRegister, tvForgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +55,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         init();
+        tvForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!etReg.getText().toString().trim().isEmpty()){
+                mAuth.sendPasswordResetEmail(etReg.getText().toString().trim());
+            }else{
+                    Toast.makeText(MainActivity.this, "Enter your email", Toast.LENGTH_SHORT).show();
+                    etReg.setText("");
+                    etReg.requestFocus();
+                    etReg.setError("Please enter your email.");
+                }
+            }
+        });
 
         // Retrieve userType from SharedPreferences
         userType = sharedPreferences.getString("userType", "user");
@@ -113,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         progressBar = findViewById(R.id.progressBar);
         tvRegister = findViewById(R.id.tvRegister);
+        tvForgotPassword = findViewById(R.id.tvForgotPassword);
     }
 
     private void setUIForUserType(String userType) {
