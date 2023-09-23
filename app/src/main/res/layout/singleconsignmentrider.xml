@@ -155,9 +155,10 @@
                     android:background="@drawable/etbackground"
                     android:drawableStart="@drawable/baseline_monitor_weight_24"
                     android:drawablePadding="10dp"
-                    android:hint="Enter Package Weight"
+                    android:hint="Enter Package Weight in KG(s)"
                     android:inputType="number"
                     android:textColorHint="@color/black" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -181,7 +182,7 @@
                     android:background="@drawable/etbackground"
                     android:drawableStart="@drawable/baseline_my_location_24"
                     android:drawablePadding="10dp"
-                    android:hint="Enter Distance"
+                    android:hint="Enter Distance in KM(s)"
                     android:inputType="number"
                     android:textColorHint="@color/black" />
 
@@ -218,7 +219,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvShippingPrice" />
+                app:layout_constraintTop_toBottomOf="@id/btnCalculateShipping" />
 
             <TextView
                 android:id="@+id/ShippingPrice"
@@ -247,6 +248,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ShippingPrice"
                 tools:text="Rs. 1000" />
+
+            <Button
+                android:id="@+id/btnCalculateShipping"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#8BC34A"
+                android:text="Calculate Shipping Cost"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvShippingPrice" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

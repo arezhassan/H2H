@@ -74,7 +74,7 @@ public class RiderCheck extends AppCompatActivity {
             Intent intent = new Intent(RiderCheck.this, RiderHome.class);
             startActivity(intent);
             finish();
-        }else if(!RiderAccountStatus && (rider.getStatus() == null || rider.getStatus().isEmpty())) {
+        }else if(!RiderAccountStatus && (rider.getStatus() == null || rider.getStatus().equals("Pending"))) {
             btnLogoutRider.setVisibility(View.VISIBLE);
             tvRiderAccountStatus.setText("Rider Account is still in verification process..");
             lottieView.setAnimation(R.raw.notverified);

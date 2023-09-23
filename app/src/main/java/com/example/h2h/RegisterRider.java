@@ -99,6 +99,7 @@ public class RegisterRider extends AppCompatActivity {
                                     String downloadUrl = uri.toString();
                                     url = downloadUrl;
                                     ivUploaded.setVisibility(View.VISIBLE);
+                                    btnUploadCnic.setVisibility(View.GONE);
                                     riderRegistrationPgBar.setVisibility(View.GONE);
 
 
@@ -108,6 +109,9 @@ public class RegisterRider extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
+                                    ivUploaded.setVisibility(View.GONE);
+                                    riderRegistrationPgBar.setVisibility(View.GONE);
+
                                     btnUploadCnic.setVisibility(View.VISIBLE);
                                     // Handle any errors that occurred during the download URL retrieval
                                     Toast.makeText(RegisterRider.this, "Error getting download URL", Toast.LENGTH_SHORT).show();
@@ -118,6 +122,8 @@ public class RegisterRider extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            riderRegistrationPgBar.setVisibility(View.GONE);
+                            ivUploaded.setVisibility(View.GONE);
                             riderRegistrationPgBar.setVisibility(View.GONE);
                             btnUploadCnic.setVisibility(View.VISIBLE);
 
@@ -171,13 +177,14 @@ public class RegisterRider extends AppCompatActivity {
             password2 = etRiderPassword2.getText().toString();
             cnic = etRiderCnic.getText().toString().trim();
             phone = etRiderPhone.getText().toString();
-            rider = new Rider(name, phone, email, address, password,cnic,url,false,"","");
+            rider = new Rider(name, phone, email, address, password,cnic,url,false,"","Pending");
             registerOnFirebase(email, password);
         }
     }
     private void init(){
 
         ivUploaded = findViewById(R.id.ivUploaded);
+        ivUploaded.setVisibility(View.GONE);
         riderRegistrationPgBar = findViewById(R.id.riderRegistrationPgBar);
         mAuth = FirebaseAuth.getInstance();
         etRiderAddress = findViewById(R.id.etRiderAddress);

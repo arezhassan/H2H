@@ -44,8 +44,9 @@ public class ApproveRiders extends AppCompatActivity {
                 riders.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Rider rider = dataSnapshot.getValue(Rider.class);
+                    if (rider.getStatus().equals("Pending") && !rider.isVerificationStatus()){
                     riders.add(rider);
-                }
+                }}
                 setRecyclerView();
                 if (riders.size() == 0)
                     tvApproveRiders.setText("No New Riders to Approve");
