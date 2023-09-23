@@ -183,9 +183,11 @@ public class RegisterRider extends AppCompatActivity {
     }
     private void init(){
 
+
         ivUploaded = findViewById(R.id.ivUploaded);
         ivUploaded.setVisibility(View.GONE);
         riderRegistrationPgBar = findViewById(R.id.riderRegistrationPgBar);
+        riderRegistrationPgBar.setVisibility(View.GONE);
         mAuth = FirebaseAuth.getInstance();
         etRiderAddress = findViewById(R.id.etRiderAddress);
         etRiderName = findViewById(R.id.etConsignmentWeight);

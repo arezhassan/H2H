@@ -85,6 +85,10 @@ public class RiderConsignmentAdapter extends RecyclerView.Adapter<RiderConsignme
         holder.btnCalculateShipping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                status = holder.spinnerStatus.getSelectedItem().toString();
+                weight = holder.textinputweight.getEditText().getText().toString();
+                distance = holder.textinputdistance.getEditText().getText().toString();
+                quantity = holder.spinnerQuantity.getSelectedItem().toString();
                 if (weight.isEmpty() || distance.isEmpty()) {
                     Toast.makeText(context, "Please enter weight and distance", Toast.LENGTH_SHORT).show();
                 } else if (quantity.equals("Select Quantity")) {
@@ -134,6 +138,7 @@ public class RiderConsignmentAdapter extends RecyclerView.Adapter<RiderConsignme
                 holder.ShippingPrice.setVisibility(View.GONE);
                 holder.btnConfirmDetails.setVisibility(View.GONE);
                 holder.spinnerStatus.setVisibility(View.GONE);
+                holder.btnCalculateShipping.setVisibility(View.GONE);
                 Toast.makeText(context, "Details Updated", Toast.LENGTH_SHORT).show();
             }}
 

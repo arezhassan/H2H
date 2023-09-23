@@ -376,7 +376,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
-                android:background="@drawable/buttonbg"
+                android:backgroundTint="#4CAF50"
                 android:text="Upload Item Photo"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />

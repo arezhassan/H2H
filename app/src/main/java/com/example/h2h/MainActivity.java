@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor; // Initialize SharedPreferences.Editor
 
     TextView tvRegister, tvForgotPassword;
+    CheckBox checkBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+        checkBox = findViewById(R.id.checkBox);
         tvUserType = findViewById(R.id.tvUserType);
         btnLogin = findViewById(R.id.btnLogin);
         etPass = findViewById(R.id.etPass);
@@ -132,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
         if ("admin".equals(userType)) {
             tvUserType.setText("Admin Login");
             tvRegister.setVisibility(View.GONE);
+            checkBox.setVisibility(View.INVISIBLE);
+
         } else if ("rider".equals(userType)) {
             tvUserType.setText("Rider Login");
         } else {
