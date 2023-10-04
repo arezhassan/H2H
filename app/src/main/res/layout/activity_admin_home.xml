@@ -109,7 +109,6 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="5dp"
         android:background="@drawable/buttonbg"
         android:drawableEnd="@drawable/baseline_edit_attributes_24"
         android:text="Edit/View Consignments"
@@ -117,7 +116,6 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogoutAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -128,16 +126,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="5dp"
         android:background="@drawable/buttonbg"
         android:drawableEnd="@drawable/baseline_logout_24"
         android:text="Logout"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnPendingConsignments" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
