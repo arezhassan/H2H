@@ -66,7 +66,7 @@ public class AdminConsignmentAdapter extends RecyclerView.Adapter<AdminConsignme
         holder.tvAdminConsignmentReceiverAddress.setText(consignmentItem.getReceiverAddress());
         holder.tvAdminConsignmentSenderAddress.setText(consignmentItem.getSenderAddress());
         holder.tvAdminConsignmentStatus.setText(consignmentItem.getStatus());
-        holder.tvAdminConsignmentDate.setText(consignmentItem.getPickupDateTime());
+        holder.tvAdminConsignmentDate.setText(consignmentItem.getPickupDateTime()+ " ("+ consignmentItem.getTime()+ ")");
         holder.tvAdminConsignmentCategory.setText(consignmentItem.getItemCategory());
         holder.tvAdminConsignmentQuantity.setText(consignmentItem.getItemQuantity());
 

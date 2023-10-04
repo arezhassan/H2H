@@ -1,6 +1,13 @@
 package com.example.h2h;
 
-public class Consignment {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
+
+public class Consignment implements Parcelable {
     private String id;
     private String senderAddress;
     private  String time;
@@ -228,4 +235,65 @@ public class Consignment {
     public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeString(id);
+        parcel.writeString(senderAddress);
+        parcel.writeString(time);
+        parcel.writeString(assignedto);
+        parcel.writeString(receiverAddress);
+        parcel.writeString(receiverName);
+        parcel.writeString(latitude);
+        parcel.writeString(longitude);
+        parcel.writeString(receiverContact);
+        parcel.writeString(pickupDateTime);
+        parcel.writeString(rider);
+        parcel.writeString(price);
+        parcel.writeString(weight);
+        parcel.writeString(itemCategory);
+        parcel.writeString(itemQuantity);
+        parcel.writeString(itemDescription);
+        parcel.writeString(url);
+        parcel.writeString(userid);
+        parcel.writeString(status);
+    }
+
+    public static final Parcelable.Creator<Consignment> CREATOR = new Parcelable.Creator<Consignment>() {
+        public Consignment createFromParcel(Parcel in) {
+            return new Consignment(in);
+        }
+
+        public Consignment[] newArray(int size) {
+            return new Consignment[size];
+        }
+    };
+
+    private Consignment(Parcel in) {
+        id = in.readString();
+        senderAddress = in.readString();
+        time = in.readString();
+        assignedto = in.readString();
+        receiverAddress = in.readString();
+        receiverName = in.readString();
+        latitude = in.readString();
+        longitude = in.readString();
+        receiverContact = in.readString();
+        pickupDateTime = in.readString();
+        rider = in.readString();
+        price = in.readString();
+        weight = in.readString();
+        itemCategory = in.readString();
+        itemQuantity = in.readString();
+        itemDescription = in.readString();
+        url = in.readString();
+        userid = in.readString();
+        status = in.readString();
+    }
+
 }

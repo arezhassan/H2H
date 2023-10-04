@@ -157,7 +157,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-condensed"
-                android:text="Consignment Date"
+                android:text="Consignment Date and Time"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvAdminConsignmentStatus" />
 
