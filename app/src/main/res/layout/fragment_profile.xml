@@ -19,15 +19,14 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/cardgradient">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tvUserName"
@@ -36,8 +35,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="3dp"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textColor="#BE000000"
+                    android:textSize="17sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView27"
                     tools:text="Arez Hassan" />
@@ -49,8 +48,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="3dp"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textColor="#BE000000"
+                    android:textSize="17sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView29"
                     tools:text="03070042162" />
@@ -63,8 +62,8 @@
                     android:layout_marginTop="3dp"
                     android:layout_marginBottom="25dp"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
+                    android:textColor="#BE000000"
+                    android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView31"
@@ -85,7 +84,8 @@
                     app:layout_constraintVertical_bias="1.0"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/cardload" />
+                    app:lottie_rawRes="@raw/cardload"
+                    tools:visibility="gone" />
 
                 <TextView
                     android:id="@+id/textView27"
@@ -95,7 +95,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-condensed"
                     android:text="Name"
-                    android:textColor="@color/white"
+                    android:textColor="#BE000000"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -107,7 +107,7 @@
                     android:layout_marginTop="15dp"
                     android:fontFamily="sans-serif-condensed"
                     android:text="Phone"
-                    android:textColor="@color/white"
+                    android:textColor="#BE000000"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvUserName" />
 
@@ -119,9 +119,54 @@
                     android:layout_marginTop="15dp"
                     android:fontFamily="sans-serif-condensed"
                     android:text="Email"
-                    android:textColor="@color/white"
+                    android:textColor="#BE000000"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvUserPhone" />
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/baseline_perm_identity_24"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView27"
+                    app:layout_constraintStart_toEndOf="@+id/textView27"
+                    app:layout_constraintTop_toTopOf="@+id/textView27" />
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/baseline_local_phone"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView29"
+                    app:layout_constraintStart_toEndOf="@+id/textView29"
+                    app:layout_constraintTop_toTopOf="@+id/textView29" />
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/baseline_email"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView31"
+                    app:layout_constraintStart_toEndOf="@+id/textView31"
+                    app:layout_constraintTop_toTopOf="@+id/textView31" />
+
+                <Button
+                    android:id="@+id/btnEditProfileUser"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="#CB000000"
+                    android:text="Edit"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    app:cornerRadius="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:rippleColor="@color/white" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -155,6 +200,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -18,6 +18,18 @@
         android:theme="@style/Theme.H2H"
         tools:targetApi="31">
         <activity
+            android:name=".EditRiderDetails"
+            android:exported="false" />
+        <activity
+            android:name=".EditAdminBookedConsignment"
+            android:exported="false" />
+        <activity
+            android:name=".AdminBookConsignment"
+            android:exported="false" />
+        <activity
+            android:name=".EditUserDetails"
+            android:exported="false" />
+        <activity
             android:name=".AdminEditConsignment"
             android:exported="false" />
         <activity

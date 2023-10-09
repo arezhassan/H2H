@@ -201,28 +201,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="3dp"
-                android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:text="3"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
             <Button
                 android:id="@+id/btnAssignRider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="190dp"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/buttonbg"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="@color/black"
                 android:elevation="5dp"
                 android:text="Assign to Rider"
                 android:textColor="@color/white"
+                app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/tvAdminConsignmentId"
-                app:layout_constraintTop_toBottomOf="@+id/spinnerRiderNames" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAdminConsignmentQuantity" />
 
             <Spinner
                 android:id="@+id/spinnerRiderNames"
@@ -231,6 +232,8 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/etbackground"
+                android:gravity="center"
+                android:paddingEnd="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
@@ -248,11 +251,10 @@
                 android:id="@+id/ivConsignment"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginTop="150dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/imagebackground"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnAssignRider"
+                app:layout_constraintTop_toBottomOf="@+id/textView34"
                 app:srcCompat="@drawable/courierbike" />
 
             <TextView

@@ -34,11 +34,11 @@ public class ConsignmentAdapter extends RecyclerView.Adapter<ConsignmentAdapter.
     public void onBindViewHolder(@NonNull ConsignmentViewHolder holder, int position) {
         Consignment consignment = consignmentList.get(position);
 
-        holder.tvConsignmentid.setText("Consignment ID: " +consignment.getId());
-        holder.tvConsignmentReceiverPhone.setText("Receiver Phone: "+consignment.getReceiverContact());
-        holder.tvConsignmentStatus.setText("Consignment Status: "+ consignment.getStatus());
-        holder.tvConsignmentSender.setText("Consignment Sender: "+consignment.getSenderAddress());
-        holder.tvConsignmentReceiver.setText("Consignment Receiver: " +consignment.getReceiverName());
+        holder.tvConsignmentid.setText(consignment.getId());
+        holder.tvConsignmentReceiverPhone.setText(consignment.getReceiverContact());
+        holder.tvConsignmentStatus.setText(consignment.getStatus());
+        holder.tvConsignmentSender.setText(consignment.getSenderAddress());
+        holder.tvConsignmentReceiver.setText(consignment.getReceiverName());
     }
 
 

@@ -27,8 +27,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/cardgradient">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/textView42"
@@ -38,7 +37,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-condensed"
                     android:text="Rider Name"
-                    android:textColor="@color/white"
+                    android:textColor="#CD000000"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,7 +48,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="2dp"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="@color/white"
+                    android:textColor="#CD000000"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView42"
                     tools:text="Hassan Khan" />
@@ -62,7 +62,7 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="sans-serif-condensed"
                     android:text="Rider CNIC"
-                    android:textColor="@color/white"
+                    android:textColor="#CD000000"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvPRiderName" />
 
@@ -73,7 +73,8 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="2dp"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="@color/white"
+                    android:textColor="#CD000000"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView44"
                     tools:text="3640222530265" />
@@ -86,7 +87,7 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="sans-serif-condensed"
                     android:text="Rider Phone"
-                    android:textColor="@color/white"
+                    android:textColor="#CD000000"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvPRiderCNIC" />
 
@@ -97,10 +98,59 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="2dp"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="@color/white"
+                    android:textColor="#CD000000"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView46"
                     tools:text="03070042162" />
+
+                <ImageView
+                    android:id="@+id/imageView16"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/account"
+                    android:tint="#000000"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView42"
+                    app:layout_constraintStart_toEndOf="@+id/textView42"
+                    app:layout_constraintTop_toTopOf="@+id/textView42" />
+
+                <ImageView
+                    android:id="@+id/imageView17"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/baseline_pin_24"
+                    android:tint="#000000"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView44"
+                    app:layout_constraintStart_toEndOf="@+id/textView44"
+                    app:layout_constraintTop_toTopOf="@+id/textView44" />
+
+                <ImageView
+                    android:id="@+id/imageView18"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="5dp"
+                    android:src="@drawable/baseline_local_phone_24"
+                    android:tint="#000000"
+                    app:layout_constraintBottom_toBottomOf="@+id/textView46"
+                    app:layout_constraintStart_toEndOf="@+id/textView46"
+                    app:layout_constraintTop_toTopOf="@+id/textView46" />
+
+                <Button
+                    android:id="@+id/btnEditDetailsRider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="#AB000000"
+                    android:text="Edit"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:cornerRadius="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:rippleColor="@color/white" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -134,7 +184,8 @@
             android:id="@+id/btnRiderLogout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/buttonbg"
             android:drawableEnd="@drawable/baseline_logout_24"
             android:textColor="@color/white"

@@ -115,6 +115,16 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("userType", userType);
                 startActivity(intent);
                 finish();
+            }else{
+                Intent intent = new Intent(MainActivity.this, AdminCheck.class);
+                intent.putExtra("userType", userType);
+                intent.putExtra("email","admin@h2h.com");
+                intent.putExtra("email1","admin2@h2h.com");
+                intent.putExtra("password","h2hadmin11");
+                intent.putExtra("password1","h2hadmin22");
+
+                startActivity(intent);
+                finish();
             }
         }
     }
@@ -136,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
             tvUserType.setText("Admin Login");
             tvRegister.setVisibility(View.GONE);
             checkBox.setVisibility(View.INVISIBLE);
+            tvForgotPassword.setVisibility(View.GONE);
 
         } else if ("rider".equals(userType)) {
             tvUserType.setText("Rider Login");

@@ -30,10 +30,10 @@ public class Profile extends Fragment {
    View view;
    FirebaseAuth mAuth;
    ProgressBar pgBar;
-   Button btnLogout;
+   Button btnLogout, btnEditProfileUser;
     private DatabaseReference userRef;
     TextView tvUserName, tvUserEmail, tvUserPhone;
-    String name, email, phone;
+    String name, email, phone, userId;
     LottieAnimationView card;
 
     @Override
@@ -41,6 +41,7 @@ public class Profile extends Fragment {
         super.onCreate(savedInstanceState);
 
         mAuth=FirebaseAuth.getInstance();
+        userId=mAuth.getCurrentUser().getUid();
         userRef= FirebaseDatabase.getInstance().getReference().child("users").child(mAuth.getCurrentUser().getUid());
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -54,6 +55,10 @@ public class Profile extends Fragment {
                     double phone1 = user.getPhone();
                     phone = String.valueOf(phone1).replace(".","");
                     phone = phone.replace("E11","");
+                    phone=phone.replace("E9","");
+                    phone=phone.replace("E10","");
+                    phone=phone.replace("E12","");
+
 
                     // Assuming getPhone() is a valid method in your User class
 
@@ -83,12 +88,13 @@ public class Profile extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(requireActivity(), error.toString(), Toast.LENGTH_SHORT).show();
                 card.setVisibility(View.GONE);
                 pgBar.setVisibility(View.GONE);
                 btnLogout.setVisibility(View.VISIBLE);
             }
         });
+
 
     }
 
@@ -99,6 +105,7 @@ public class Profile extends Fragment {
         view= inflater.inflate(R.layout.fragment_profile, container, false);
         pgBar=view.findViewById(R.id.pgBar);
         btnLogout=view.findViewById(R.id.btnLogout);
+        btnEditProfileUser=view.findViewById(R.id.btnEditProfileUser);
         pgBar.setVisibility(View.GONE);
         card=view.findViewById(R.id.card);
         card.setVisibility(View.VISIBLE);
@@ -127,7 +134,14 @@ public class Profile extends Fragment {
 
 
 
-
+        btnEditProfileUser.setOnClickListener(view1 -> {
+            Intent i=new Intent(requireActivity(),EditUserDetails.class);
+            i.putExtra("userId",userId);
+            i.putExtra("name",name);
+            i.putExtra("email",email);
+            i.putExtra("phone",phone);
+            startActivity(i);
+        });
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +149,7 @@ public class Profile extends Fragment {
                 btnLogout.setVisibility(View.GONE);
                 pgBar.setVisibility(View.VISIBLE);
                 mAuth.signOut();
-                startActivity(new Intent(getActivity(),MainActivity.class));
+                startActivity(new Intent(getActivity(),SplashScreen2.class));
                 getActivity().finish();
             }
         });

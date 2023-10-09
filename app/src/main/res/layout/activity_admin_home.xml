@@ -103,7 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnAssignConsignments" />
 
     <Button
-        android:id="@+id/btnPendingConsignments"
+        android:id="@+id/btnAddNewConsignment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -111,7 +111,7 @@
         android:layout_marginEnd="60dp"
         android:background="@drawable/buttonbg"
         android:drawableEnd="@drawable/baseline_edit_attributes_24"
-        android:text="Edit/View Consignments"
+        android:text="Book a new Consignment"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -135,7 +135,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPendingConsignments" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAddNewConsignment" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"

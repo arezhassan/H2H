@@ -9,12 +9,13 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -50,6 +52,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -70,25 +73,24 @@ public class BookConsignment extends Fragment {
 
     FirebaseAuth mAuth;
     EditText etSenderAddress, etReceiverName, etReceiverPhone, etProductDescription, etReceiverAddress;
+
+    TextView tvImageName;
     String SenderAddress, ReceiverName, ReceiverPhone, ProductDescription, ReceiverAddress;
     String itemQuantity, itemCategory, itemDescription;
 
 
     String latitude, longitude;
 
-   Spinner spinner, quantitySpinner;
+    Spinner spinner, quantitySpinner;
 
-   ProgressBar progressBar2;
+    ProgressBar progressBar2;
 
     private FusedLocationProviderClient fusedLocationClient;
     private static final int MY_PERMISSIONS_REQUEST_LOCATION = 100;
     private StorageReference storageReference;
     private static final int PICK_IMAGE_REQUEST = 100;
     ImageView ivDone, ivGetLocation;
-   public static long ccount = 0;
-
-
-
+    public static long ccount = 0;
 
 
     @Override
@@ -112,13 +114,14 @@ public class BookConsignment extends Fragment {
         progressBar.setVisibility(View.GONE);
         btnUploadPhoto = view.findViewById(R.id.btnUploadPicture);
         etTime = view.findViewById(R.id.etTime);
-        ivGetLocation = view.findViewById(R.id.ivGetLocation);
+        tvImageName = view.findViewById(R.id.tvImageName);
+        tvImageName.setVisibility(View.GONE);
         etSenderAddress = view.findViewById(R.id.etSenderAddress);
         etReceiverName = view.findViewById(R.id.etReceiverName);
         etReceiverPhone = view.findViewById(R.id.etReceiverPhone);
         etProductDescription = view.findViewById(R.id.etDescription);
         btnGetLocation = view.findViewById(R.id.btnGetLocation);
-        etSenderAddress.setEnabled(false);
+        etSenderAddress.setEnabled(true);
         spinner = view.findViewById(R.id.spinner);
         etReceiverAddress = view.findViewById(R.id.etReceiverAddress);
         quantitySpinner = view.findViewById(R.id.quantitySpinner);
@@ -137,25 +140,12 @@ public class BookConsignment extends Fragment {
                 }
                 // Handle the back button press here
                 // You can use FragmentManager to navigate back to the parent fragment
-               getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
             }
         });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("consignment").child(mAuth.getUid());
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("consignment").child(mAuth.getUid());
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -173,9 +163,6 @@ public class BookConsignment extends Fragment {
                 Log.e("Count", "Error: " + databaseError.getMessage());
             }
         });
-
-
-
 
 
         Home mainActivity = (Home) getActivity();
@@ -206,7 +193,7 @@ public class BookConsignment extends Fragment {
                                                       int monthOfYear, int dayOfMonth) {
                                     // on below line we are setting date to our text view.
                                     etDate.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
-                                    date=etDate.getText().toString();
+                                    date = etDate.getText().toString();
                                 }
                             },
 
@@ -237,8 +224,15 @@ public class BookConsignment extends Fragment {
                                                       int minute) {
                                     // on below line we are setting selected time
                                     // in our text view.
-                                    etTime.setText(hourOfDay + ":" + minute);
-                                    time=etTime.getText().toString();
+                                    if (hourOfDay>12){
+                                        int hr=hourOfDay-12;
+                                        etTime.setText(hr + ":" + minute);
+                                        time = etTime.getText().toString();
+                                    }else{
+                                        etTime.setText(hourOfDay + ":" + minute);
+
+                                    }
+
                                 }
                             }, hour, minute, false);
                     // at last we are calling show to
@@ -251,8 +245,8 @@ public class BookConsignment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(spinner.getSelectedItem()!=null) {
-                    itemCategory=spinner.getSelectedItem().toString();
+                if (spinner.getSelectedItem() != null) {
+                    itemCategory = spinner.getSelectedItem().toString();
                 }
             }
 
@@ -265,8 +259,8 @@ public class BookConsignment extends Fragment {
         quantitySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(spinner.getSelectedItem()!=null) {
-                    itemQuantity=quantitySpinner.getSelectedItem().toString();
+                if (spinner.getSelectedItem() != null) {
+                    itemQuantity = quantitySpinner.getSelectedItem().toString();
                 }
             }
 
@@ -279,73 +273,63 @@ public class BookConsignment extends Fragment {
         });
 
 
-btnGetLocation.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
+        btnGetLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        etSenderAddress.setText("Finding Location....");
-        progressBar2.setVisibility(View.VISIBLE);
-        ivGetLocation.setVisibility(View.GONE);
-        requestLocation();
-    }
-});
+                etSenderAddress.setText("Finding Location....");
+                progressBar2.setVisibility(View.VISIBLE);
+                requestLocation();
+            }
+        });
         btnGetLocation.performClick();
 
-       ivBack.setOnClickListener(new View.OnClickListener() {
+        ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mainActivity != null) {
                     BottomNavigationView bottomNavigationView = mainActivity.findViewById(R.id.navigation);
                     bottomNavigationView.setVisibility(View.VISIBLE);
                 }
-                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
             }
         });
-
-
 
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(etReceiverName.getText().toString().isEmpty()||etReceiverPhone.getText().toString().isEmpty()||etReceiverAddress.getText().toString().isEmpty() ||etTime.getText().toString().isEmpty()||spinner.getSelectedItem().toString().isEmpty()||quantitySpinner.getSelectedItem().toString().isEmpty())
-                {
-
-
-
-
+                if (etReceiverName.getText().toString().isEmpty() || etReceiverPhone.getText().toString().isEmpty() || etReceiverAddress.getText().toString().isEmpty() || etTime.getText().toString().isEmpty() || spinner.getSelectedItem().toString().isEmpty() || quantitySpinner.getSelectedItem().toString().isEmpty()) {
 
 
                     Toast.makeText(getActivity(), "Please Enter All Fields", Toast.LENGTH_SHORT).show();
-                } else if(etSenderAddress.getText().toString().equals("Finding Location....")){
+                } else if (etSenderAddress.getText().toString().equals("Finding Location....")) {
 
                     etSenderAddress.setText("Please Wait....");
                     btnGetLocation.performClick();
-                    
-                }else {
+
+                } else {
                     progressBar.setVisibility(View.VISIBLE);
                     DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference();
                     String userId = mAuth.getCurrentUser().getUid();
-                    SenderAddress=etSenderAddress.getText().toString();
-                    ReceiverName=etReceiverName.getText().toString();
-                    ReceiverPhone=etReceiverPhone.getText().toString();
-                    ReceiverAddress=etReceiverAddress.getText().toString();
-                    date=etDate.getText().toString();
-                    time=etTime.getText().toString();
-                    itemCategory=spinner.getSelectedItem().toString();
-                    itemQuantity=quantitySpinner.getSelectedItem().toString();
-                    ProductDescription=etProductDescription.getText().toString();
-                    latitude=latitude;
-                    longitude=longitude;
-                    url=url;
-                    ccount=ccount+1;
-                    String consignmentId = userId.toLowerCase(Locale.ROOT).substring(0,4)+ccount;
+                    SenderAddress = etSenderAddress.getText().toString();
+                    ReceiverName = etReceiverName.getText().toString();
+                    ReceiverPhone = etReceiverPhone.getText().toString();
+                    ReceiverAddress = etReceiverAddress.getText().toString();
+                    date = etDate.getText().toString();
+                    time = etTime.getText().toString();
+                    itemCategory = spinner.getSelectedItem().toString();
+                    itemQuantity = quantitySpinner.getSelectedItem().toString();
+                    ProductDescription = etProductDescription.getText().toString();
+                    latitude = latitude;
+                    longitude = longitude;
+                    url = url;
+                    ccount = ccount + 1;
+                    String consignmentId = userId.toLowerCase(Locale.ROOT).substring(0, 4) + ccount;
 
 
-
-
-                    Consignment con =new Consignment(SenderAddress, ReceiverAddress, ReceiverName, ReceiverPhone,"Booked", date, time, itemCategory, itemQuantity,ProductDescription, consignmentId, latitude, longitude, url,"", "","","",mAuth.getUid());
+                    Consignment con = new Consignment(SenderAddress, ReceiverAddress, ReceiverName, ReceiverPhone, "Booked", date, time, itemCategory, itemQuantity, ProductDescription, consignmentId, latitude, longitude, url, "", "", "", "", mAuth.getUid());
                     usersRef.child("consignment").child(userId).child(consignmentId).setValue(con);
                     progressBar.setVisibility(View.GONE);
                     Home mainActivity = (Home) getActivity();
@@ -368,15 +352,11 @@ btnGetLocation.setOnClickListener(new View.OnClickListener() {
 
                     // Create a notification channel (for Android Oreo and later)
 
-                        NotificationChannel channel = new NotificationChannel(channelId, "Channel Name", NotificationManager.IMPORTANCE_DEFAULT);
-                        notificationManager.createNotificationChannel(channel);
+                    NotificationChannel channel = new NotificationChannel(channelId, "Channel Name", NotificationManager.IMPORTANCE_DEFAULT);
+                    notificationManager.createNotificationChannel(channel);
 
 
                     notificationManager.notify(0, notificationBuilder.build());
-
-
-
-
 
 
                     Intent intent = new Intent(getActivity(), ConsignmentBookedAnimation.class);
@@ -385,16 +365,6 @@ btnGetLocation.setOnClickListener(new View.OnClickListener() {
 
 
                 }
-
-
-
-
-
-
-
-
-
-
 
 
             }
@@ -410,9 +380,9 @@ btnGetLocation.setOnClickListener(new View.OnClickListener() {
         });
 
 
-
         return view;
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -420,6 +390,9 @@ btnGetLocation.setOnClickListener(new View.OnClickListener() {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             // Get the selected image URI
             Uri selectedImageUri = data.getData();
+            String filename = getFileNameFromUri(selectedImageUri);
+            tvImageName.setText(filename);
+            tvImageName.setVisibility(View.VISIBLE);
 
             // Create a reference to a specific location in Firebase Storage
             StorageReference imageRef = storageReference.child("images/" + selectedImageUri.getLastPathSegment());
@@ -435,7 +408,7 @@ btnGetLocation.setOnClickListener(new View.OnClickListener() {
                                 public void onSuccess(Uri uri) {
                                     // Handle the download URL (e.g., save it to Firebase Database, display it, etc.)
                                     String downloadUrl = uri.toString();
-                                    url=downloadUrl;
+                                    url = downloadUrl;
                                     ivDone.setVisibility(View.VISIBLE);
                                     progressBar.setVisibility(View.GONE);
                                     btnUploadPhoto.setVisibility(View.GONE);
@@ -453,6 +426,7 @@ btnGetLocation.setOnClickListener(new View.OnClickListener() {
                                     Toast.makeText(getActivity(), "Error getting download URL", Toast.LENGTH_SHORT).show();
                                 }
                             });
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -463,8 +437,35 @@ btnGetLocation.setOnClickListener(new View.OnClickListener() {
                             // Handle any errors that occurred during the image upload
                             Toast.makeText(getActivity(), "Image upload failed", Toast.LENGTH_SHORT).show();
                         }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                            double progress = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+
+                            // Update the ProgressBar with the current progress
+                            progressBar.setProgress((int) progress);
+                        }
                     });
         }
+    }
+
+    private String getFileNameFromUri(Uri uri) {
+        String imageName = null;
+        if (uri != null) {
+            Cursor cursor = requireActivity().getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null) {
+                try {
+                    if (cursor.moveToFirst()) {
+                        int displayNameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                        imageName = cursor.getString(displayNameIndex);
+                    }
+                } finally {
+                    cursor.close();
+                }
+            }
+        }
+        return imageName;
     }
 
     private void requestLocation() {
@@ -487,7 +488,6 @@ btnGetLocation.setOnClickListener(new View.OnClickListener() {
                     if (getActivity() != null && latitude != null && longitude != null) {
                         new GeocodingTask(getActivity()).execute(latitude, longitude);
                         progressBar2.setVisibility(View.GONE);
-                        ivGetLocation.setVisibility(View.VISIBLE);
                     }
                 }
             };

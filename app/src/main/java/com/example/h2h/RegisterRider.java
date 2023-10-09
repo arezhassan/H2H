@@ -6,14 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -23,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -36,6 +40,8 @@ public class RegisterRider extends AppCompatActivity {
     ImageView ivUploaded;
     private StorageReference storageReference;
     private static final int PICK_IMAGE_REQUEST = 100;
+
+    TextView tvFileName;
 
     Rider rider;
     ProgressBar riderRegistrationPgBar;
@@ -82,6 +88,8 @@ public class RegisterRider extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             // Get the selected image URI
             Uri selectedImageUri = data.getData();
+            String filename=getFileNameFromUri(selectedImageUri);
+            tvFileName.setText(filename);
 
             // Create a reference to a specific location in Firebase Storage
             StorageReference imageRef = storageReference.child("images/" + selectedImageUri.getLastPathSegment());
@@ -130,6 +138,15 @@ public class RegisterRider extends AppCompatActivity {
                             // Handle any errors that occurred during the image upload
                             Toast.makeText(RegisterRider.this, "Image upload failed", Toast.LENGTH_SHORT).show();
                         }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                            double progress = (100.0 * snapshot.getBytesTransferred()) / snapshot.getTotalByteCount();
+
+                            // Update the ProgressBar with the current progress
+                            riderRegistrationPgBar.setProgress((int) progress);
+                        }
                     });
         }
     }
@@ -138,6 +155,23 @@ public class RegisterRider extends AppCompatActivity {
 
 
 
+    private String getFileNameFromUri(Uri uri) {
+        String imageName = null;
+        if (uri != null) {
+            Cursor cursor = getContentResolver().query(uri, null, null, null, null);
+            if (cursor != null) {
+                try {
+                    if (cursor.moveToFirst()) {
+                        int displayNameIndex = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+                        imageName = cursor.getString(displayNameIndex);
+                    }
+                } finally {
+                    cursor.close();
+                }
+            }
+        }
+        return imageName;
+    }
 
 
     private void getData(){
@@ -198,6 +232,7 @@ public class RegisterRider extends AppCompatActivity {
         etRiderPhone = findViewById(R.id.etRiderPhone);
         btnRegisterRider = findViewById(R.id.btnRegisterRider);
         btnUploadCnic = findViewById(R.id.btnUploadCnic);
+        tvFileName = findViewById(R.id.tvFileName);
 
 
 

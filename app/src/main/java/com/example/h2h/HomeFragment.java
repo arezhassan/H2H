@@ -1,38 +1,35 @@
 package com.example.h2h;
 
 import android.os.Bundle;
-
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.airbnb.lottie.LottieAnimationView;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.Locale;
 
 public class HomeFragment extends Fragment {
     View view;
     FirebaseAuth mAuth;
-    LinearLayout linearLayout;
-     int backPressCount = 0;
+
+    int backPressCount = 0;
     TextView tvWelcome, tvConsignmentNumber, tvFrom, tvTo, tvTotalPrice, tvItem, tvDate, tvRecent, tvStatus;
+    TextView tvNumberContainer, tvSenderContainer, tvReceiverContainer, tvPriceContainer, tvItemContainer, tvDateContainer, tvStatusContainer;
     FirebaseDatabase database;
     LottieAnimationView cardView;
     Button btnBookConsignment, btnTrackConsignment, btnYourConsignments;
@@ -116,8 +113,6 @@ public class HomeFragment extends Fragment {
 
         btnBookConsignment = view.findViewById(R.id.btnBookConsignment);
         tvStatus = view.findViewById(R.id.tvStatus);
-        linearLayout = view.findViewById(R.id.linearlayout);
-        linearLayout.setVisibility(View.GONE);
         btnTrackConsignment = view.findViewById(R.id.btnTrackConsignment);
         btnYourConsignments = view.findViewById(R.id.btnYourConsignments);
         tvConsignmentNumber = view.findViewById(R.id.tvConsignmentNumber);
@@ -136,6 +131,25 @@ public class HomeFragment extends Fragment {
         tvItem.setVisibility(View.GONE);
         tvDate.setVisibility(View.GONE);
         tvStatus.setVisibility(View.GONE);
+        tvDateContainer = view.findViewById(R.id.tvDateContainer);
+        tvStatusContainer = view.findViewById(R.id.tvStatusContainer);
+        tvItemContainer = view.findViewById(R.id.tvItemContainer);
+        tvPriceContainer = view.findViewById(R.id.tvPriceContainer);
+        tvSenderContainer = view.findViewById(R.id.tvSenderContainer);
+        tvNumberContainer = view.findViewById(R.id.tvNumberContainer);
+        tvReceiverContainer = view.findViewById(R.id.tvReceiverContainer);
+        tvRecent.setVisibility(View.VISIBLE);
+
+        tvSenderContainer.setVisibility(View.GONE);
+        tvReceiverContainer.setVisibility(View.GONE);
+        tvPriceContainer.setVisibility(View.GONE);
+        tvItemContainer.setVisibility(View.GONE);
+        tvDateContainer.setVisibility(View.GONE);
+        tvStatusContainer.setVisibility(View.GONE);
+        tvNumberContainer.setVisibility(View.GONE);
+
+
+
     }
 
     private void setupListeners() {
@@ -145,17 +159,18 @@ public class HomeFragment extends Fragment {
     }
 
     private void setConsignmentDetails(Consignment consignment, String reference) {
+        tvStatus.setText(consignment.getStatus());
         tvRecent.setText("Recent Consignment");
-        tvConsignmentNumber.setText("Consignment Number: " + reference);
-        tvFrom.setText("Sender: " + consignment.getReceiverName());
-        tvTo.setText("Receiver Address: " + consignment.getSenderAddress());
-        tvTotalPrice.setText("Quantity: " + consignment.getItemQuantity());
-        tvItem.setText("Item Category: " + consignment.getItemCategory());
+        tvConsignmentNumber.setText(reference);
+        tvFrom.setText(consignment.getReceiverName());
+        tvTo.setText(consignment.getSenderAddress());
+        tvTotalPrice.setText(consignment.getItemQuantity());
+        tvItem.setText(consignment.getItemCategory());
+        tvDate.setText(consignment.getPickupDateTime());
         hideNoConsignmentsMessage();
     }
 
     private void showNoConsignmentsMessage() {
-        linearLayout.setVisibility(View.VISIBLE);
         tvRecent.setText("No Recent Consignments");
         tvRecent.setVisibility(View.VISIBLE);
         cardView.setVisibility(View.GONE);
@@ -166,10 +181,16 @@ public class HomeFragment extends Fragment {
         tvItem.setVisibility(View.GONE);
         tvStatus.setVisibility(View.GONE);
         tvDate.setVisibility(View.GONE);
+        tvSenderContainer.setVisibility(View.GONE);
+        tvReceiverContainer.setVisibility(View.GONE);
+        tvPriceContainer.setVisibility(View.GONE);
+        tvItemContainer.setVisibility(View.GONE);
+        tvNumberContainer.setVisibility(View.GONE);
+        tvDateContainer.setVisibility(View.GONE);
+        tvStatusContainer.setVisibility(View.GONE);
     }
 
     private void hideNoConsignmentsMessage() {
-        linearLayout.setVisibility(View.GONE);
         tvRecent.setVisibility(View.VISIBLE);
         cardView.setVisibility(View.GONE);
         tvConsignmentNumber.setVisibility(View.VISIBLE);
@@ -179,6 +200,13 @@ public class HomeFragment extends Fragment {
         tvItem.setVisibility(View.VISIBLE);
         tvStatus.setVisibility(View.VISIBLE);
         tvDate.setVisibility(View.VISIBLE);
+        tvSenderContainer.setVisibility(View.VISIBLE);
+        tvReceiverContainer.setVisibility(View.VISIBLE);
+        tvPriceContainer.setVisibility(View.VISIBLE);
+        tvItemContainer.setVisibility(View.VISIBLE);
+        tvDateContainer.setVisibility(View.VISIBLE);
+        tvStatusContainer.setVisibility(View.VISIBLE);
+        tvNumberContainer.setVisibility(View.VISIBLE);
     }
 
     private void hideConsignmentDetails() {
@@ -190,5 +218,13 @@ public class HomeFragment extends Fragment {
         tvItem.setVisibility(View.GONE);
         tvStatus.setVisibility(View.GONE);
         tvDate.setVisibility(View.GONE);
+        tvSenderContainer.setVisibility(View.GONE);
+        tvReceiverContainer.setVisibility(View.GONE);
+        tvNumberContainer.setVisibility(View.GONE);
+        tvPriceContainer.setVisibility(View.GONE);
+        tvItemContainer.setVisibility(View.GONE);
+        tvDateContainer.setVisibility(View.GONE);
+        tvStatusContainer.setVisibility(View.GONE);
     }
+
 }

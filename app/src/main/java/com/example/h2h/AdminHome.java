@@ -25,7 +25,7 @@ public class AdminHome extends AppCompatActivity {
     TextView tvWelcomeAdmin, tvNumberOfRiders, tvNumberOfConsignments;
 
     TextView tvSTATUS, tvTIME, tvID;
-    Button btnViewRiders, btnAssignConsignments, btnApproveRiders, btnLogoutAdmin,btnPendingConsignments;
+    Button btnViewRiders, btnAssignConsignments, btnApproveRiders, btnLogoutAdmin,btnAddNewConsignment;
     String email;
 
     CardView cardview;
@@ -74,8 +74,8 @@ public class AdminHome extends AppCompatActivity {
 
             }
         });
-        btnPendingConsignments.setOnClickListener(view -> {
-            Intent i=new Intent(AdminHome.this, AdminEditConsignment.class);
+        btnAddNewConsignment.setOnClickListener(view -> {
+            Intent i=new Intent(AdminHome.this, AdminBookConsignment.class);
             i.putParcelableArrayListExtra("consignments",consignments);
             startActivity(i);
         });
@@ -157,7 +157,7 @@ public class AdminHome extends AppCompatActivity {
         btnAssignConsignments = findViewById(R.id.btnAssignConsignments);
         btnApproveRiders = findViewById(R.id.btnApproveRiders);
         btnLogoutAdmin = findViewById(R.id.btnLogoutAdmin);
-        btnPendingConsignments = findViewById(R.id.btnPendingConsignments);
+        btnAddNewConsignment = findViewById(R.id.btnAddNewConsignment);
         tvID=findViewById(R.id.tvID);
         tvSTATUS=findViewById(R.id.tvSTATUS);
         tvTIME=findViewById(R.id.tvTIME);

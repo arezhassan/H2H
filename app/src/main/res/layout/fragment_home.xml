@@ -6,45 +6,91 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".HomeFragment">
-
-    <ImageView
-        android:id="@+id/imageView2"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="293dp"
-        android:scaleType="centerInside"
-        android:scaleX="1.9"
-        android:scaleY="1.12"
-        android:src="@drawable/bluecircle"
-        app:srcCompat="@drawable/bluecircle" />
+        android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="@id/btnTrackConsignment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnBookConsignment"
+            app:layout_constraintTop_toTopOf="@id/btnTrackConsignment"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/animation1" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationView2"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="@id/btnTrackConsignment"
+            app:layout_constraintEnd_toStartOf="@+id/btnTrackConsignment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btnTrackConsignment"
+            app:layout_constraintVertical_bias="0.785"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/animation1" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:src="@color/appblue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@color/appblue" />
 
         <TextView
             android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_margin="25dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="sans-serif-black"
             android:textColor="@color/white"
-            android:textSize="24sp" />
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+            android:id="@+id/cardView3"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
             android:padding="2dp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="25dp"
-            app:cardElevation="10dp">
+            app:cardElevation="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnBookConsignment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvWelcome">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/cardgradient">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tvRecent"
@@ -54,12 +100,14 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-medium"
-                    android:textColor="@color/white"
-                    android:textSize="28sp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Recent Consignment"
+                    tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/tvConsignmentNumber"
@@ -67,27 +115,32 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="2dp"
                     android:fontFamily="sans-serif"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="10sp"
+                    android:textStyle="bold"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvRecent" />
+                    app:layout_constraintTop_toBottomOf="@id/tvNumberContainer"
+                    tools:text="SJDSJ2ksd"
+                    tools:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tvStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="sans-serif"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="10sp"
-                    app:layout_constraintBottom_toTopOf="parent"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvDate"
+                    app:layout_constraintTop_toBottomOf="@id/tvStatusContainer"
+                    tools:text="PENDING"
                     tools:visibility="gone" />
 
                 <TextView
@@ -96,13 +149,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="3dp"
                     android:fontFamily="sans-serif"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="10sp"
+                    android:textStyle="bold"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvConsignmentNumber" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvSenderContainer"
+                    tools:text="AREZ HASSAN"
+                    tools:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tvTo"
@@ -110,13 +166,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="2dp"
                     android:fontFamily="sans-serif"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="10sp"
+                    android:textStyle="bold"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvFrom" />
+                    app:layout_constraintTop_toBottomOf="@id/tvReceiverContainer"
+                    tools:text="HAMZA"
+                    tools:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tvTotalPrice"
@@ -124,13 +183,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="3dp"
                     android:fontFamily="sans-serif"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="10sp"
+                    android:textStyle="bold"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvTo" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvPriceContainer"
+                    tools:text="2000"
+                    tools:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tvItem"
@@ -138,13 +200,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="3dp"
                     android:fontFamily="sans-serif"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="10sp"
+                    android:textStyle="bold"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvTotalPrice" />
+                    app:layout_constraintTop_toBottomOf="@id/tvItemContainer"
+                    tools:text="APPLES"
+                    tools:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tvDate"
@@ -152,14 +217,16 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="3dp"
                     android:fontFamily="sans-serif"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="10sp"
+                    android:textStyle="bold"
                     android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/tvItem" />
+                    app:layout_constraintTop_toBottomOf="@id/tvDateContainer"
+                    tools:text="08/10/2023"
+                    tools:visibility="gone" />
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/cardView"
@@ -175,70 +242,155 @@
                     app:lottie_loop="true"
                     app:lottie_rawRes="@raw/cardload"
                     tools:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvNumberContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="Consignment ID"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRecent"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvReceiverContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Consignment Receiver"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvConsignmentNumber"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvSenderContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Consignment Sender"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTo"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvPriceContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Consignment Price"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvFrom"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvItemContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Consignment Item"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTotalPrice"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvDateContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Consignment Date"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvItem"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/tvStatusContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Consignment Status"
+                    android:textColor="@color/black"
+                    android:textSize="10sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvDate"
+                    tools:visibility="visible" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
-
-
-        <LinearLayout
-            android:id="@+id/linearlayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="160dp"
-            android:background="@color/appblue"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/marginimg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@color/white"
-                app:srcCompat="@color/white" />
-        </LinearLayout>
 
         <Button
             android:id="@+id/btnBookConsignment"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/buttonbg"
             android:text="Book a Consignment"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnTrackConsignment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardView3" />
 
         <Button
             android:id="@+id/btnTrackConsignment"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
             android:background="@drawable/buttonbg"
             android:text="Track your Consignment"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnYourConsignments"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnBookConsignment" />
 
         <Button
             android:id="@+id/btnYourConsignments"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/buttonbg"
             android:text="Your Consignments"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/animationView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnTrackConsignment" />
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/animationView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/animation1" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-    </LinearLayout>
 </FrameLayout>

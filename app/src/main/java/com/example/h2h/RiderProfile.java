@@ -25,6 +25,7 @@ public class RiderProfile extends Fragment {
     TextView tvPRiderCNIC, tvPRiderName, tvPRiderPhone;
     String name, cnic, phone, userid;
     RecyclerView rvDeliveredConsignments;
+    Button btnEditDetailsRider;
     FirebaseAuth mAuth;
     ConsignmentAdapter adapter;
     View view;
@@ -43,6 +44,7 @@ public class RiderProfile extends Fragment {
         tvDeliveredConsignments=view.findViewById(R.id.tvDeliveredConsignments);
         consignments = new ArrayList<>();
         adapter = new ConsignmentAdapter(consignments, getActivity());
+        btnEditDetailsRider = view.findViewById(R.id.btnEditDetailsRider);
 
         // Initialize and set up RecyclerView
         rvDeliveredConsignments = view.findViewById(R.id.rvDeliveredConsignments);
@@ -59,8 +61,22 @@ public class RiderProfile extends Fragment {
                 getActivity().finish();
             }
         });
-
         getData();
+        btnEditDetailsRider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EditRiderDetails.class);
+                intent.putExtra("name",name);
+                intent.putExtra("phone",phone);
+                intent.putExtra("userId",userid);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
 
         return view;
     }

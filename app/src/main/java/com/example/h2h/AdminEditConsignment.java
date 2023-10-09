@@ -9,12 +9,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.ArrayList;
 
 public class AdminEditConsignment extends AppCompatActivity {
     RecyclerView rvAdminEditConsignments;
 
     ArrayList<Consignment> list;
+    ArrayList<Consignment> loadedList;
+
+    String userId;
     ArrayList<Consignment> filteredlist;
 
     RiderConsignmentAdapter adapter;
@@ -37,7 +42,9 @@ public class AdminEditConsignment extends AppCompatActivity {
     }
 
     private void init() {
+        userId = FirebaseAuth.getInstance().getUid();
         tvNoConsignments = findViewById(R.id.tvNoConsignments);
+        loadedList = new ArrayList<>();
         list = new ArrayList<>();
         filteredlist = new ArrayList<>();
         rvAdminEditConsignments = findViewById(R.id.rvAdminEditConsignments);
@@ -48,13 +55,14 @@ public class AdminEditConsignment extends AppCompatActivity {
         adapter = new RiderConsignmentAdapter(filteredlist, this);
     }
 
+
     private void filterData() {
         for (Consignment consignment : list) {
             if (!consignment.getStatus().equals("Delivered")) {
                 filteredlist.add(consignment);
             }
         }
-        tvNoConsignments.setVisibility(filteredlist.size() == 0? View.VISIBLE : View.GONE);
+        tvNoConsignments.setVisibility(filteredlist.size() == 0 ? View.VISIBLE : View.GONE);
         adapter.notifyDataSetChanged();
 
     }

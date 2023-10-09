@@ -143,5 +143,9 @@ public class AdminCheck extends AppCompatActivity {
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
         password = intent.getStringExtra("password");
+        if (email == null || password == null && email.isEmpty() || password.isEmpty()) {
+            email=intent.getStringExtra("email1");
+            password=intent.getStringExtra("password1");
+        }
     }
 }

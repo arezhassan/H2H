@@ -28,8 +28,10 @@
                 android:id="@+id/ivDeleteRider"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
+                android:background="@drawable/redcircle"
+                android:padding="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/baseline_delete_24" />
@@ -39,66 +41,64 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-condensed-light"
-                android:text="Name: Ali"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="19sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+                app:layout_constraintTop_toBottomOf="@+id/textView20"
+                tools:text="Ali" />
 
             <TextView
                 android:id="@+id/tvRiderPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-condensed-light"
-                android:text="Phone: 03070043162"
+                android:layout_marginTop="3dp"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="19sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView21" />
+                app:layout_constraintTop_toBottomOf="@+id/textView21"
+                tools:text="03070043162" />
 
             <TextView
                 android:id="@+id/tvRiderCnic"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-condensed-light"
-                android:text="CNIC: 3640222530265"
+                android:layout_marginTop="3dp"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="19sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView22" />
+                app:layout_constraintTop_toBottomOf="@+id/textView22"
+                tools:text="3640222530265" />
 
             <TextView
                 android:id="@+id/tvRiderAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-condensed-light"
-                android:text="Address: Lahore"
+                android:layout_marginTop="3dp"
+                android:fontFamily="sans-serif-condensed-medium"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="19sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView24" />
+                app:layout_constraintTop_toBottomOf="@+id/textView24"
+                tools:text="Lahore" />
 
             <ImageView
                 android:id="@+id/imgCNIC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvRiderAddress"
+                app:layout_constraintTop_toBottomOf="@+id/tvRiderAddress"
                 app:srcCompat="@drawable/twotone_person_24" />
 
             <TextView
@@ -106,8 +106,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="sans-serif-condensed-medium"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Name"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,8 +118,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-condensed-medium"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Phone"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
@@ -130,8 +130,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-condensed-medium"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="CNIC"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
@@ -142,12 +142,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-condensed-medium"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-condensed"
                 android:text="Address"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvRiderCnic" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView20"
+                app:layout_constraintStart_toEndOf="@+id/textView20"
+                app:layout_constraintTop_toTopOf="@+id/textView20"
+                app:srcCompat="@drawable/account" />
+
+            <ImageView
+                android:id="@+id/imageView13"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="2dp"
+                android:src="@drawable/baseline_local_phone_24"
+                app:layout_constraintBottom_toBottomOf="@+id/textView21"
+                app:layout_constraintStart_toEndOf="@+id/textView21"
+                app:layout_constraintTop_toTopOf="@+id/textView21" />
+
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="2dp"
+                android:tint="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="@+id/textView22"
+                app:layout_constraintStart_toEndOf="@+id/textView22"
+                app:layout_constraintTop_toTopOf="@+id/textView22"
+                app:srcCompat="@drawable/baseline_pin_24" />
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginStart="2dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView24"
+                app:layout_constraintStart_toEndOf="@+id/textView24"
+                app:layout_constraintTop_toTopOf="@+id/textView24"
+                app:srcCompat="@drawable/baseline_location_on_24white" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
