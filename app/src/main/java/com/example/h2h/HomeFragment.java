@@ -166,7 +166,7 @@ public class HomeFragment extends Fragment {
         tvTo.setText(consignment.getSenderAddress());
         tvTotalPrice.setText(consignment.getItemQuantity());
         tvItem.setText(consignment.getItemCategory());
-        tvDate.setText(consignment.getPickupDateTime());
+        tvDate.setText(consignment.getPickupDateTime() + " (Time: "+ consignment.getTime()+")");
         hideNoConsignmentsMessage();
     }
 

@@ -51,16 +51,18 @@ public class AdminBookConsignment extends Activity {
     ImageView ivBackAdmin;
     String address;
     String date, time;
-    EditText etDateAdmin, etTimeAdmin;
+    EditText etDateAdmin, etTimeAdmin, etConsignmentWeightAdmin, etConsignmentDistanceAdmin;
 
     String url;
 
     FirebaseAuth mAuth;
-    EditText etSenderAddressAdmin, etReceiverNameAdmin, etReceiverPhoneAdmin, etProductDescriptionAdmin, etReceiverAddressAdmin;
+    EditText etSenderAddressAdmin, etReceiverNameAdmin, etReceiverPhoneAdmin, etProductDescriptionAdmin, etReceiverAddressAdmin, etSenderNameAdmin;
 
     TextView tvImageNameAdmin;
-    String SenderAddress, ReceiverName, ReceiverPhone, ProductDescription, ReceiverAddress;
+    String SenderAddress, ReceiverName, ReceiverPhone, ProductDescription, ReceiverAddress, SenderName;
     String itemQuantity, itemCategory, itemDescription;
+
+    String weight, distance;
 
     String latitude, longitude;
 
@@ -84,11 +86,14 @@ public class AdminBookConsignment extends Activity {
         progressBarAdmin.setVisibility(View.GONE);
         btnUploadPhotoAdmin = findViewById(R.id.btnUploadPictureAdmin);
         etTimeAdmin = findViewById(R.id.etTimeAdmin);
+        etConsignmentDistanceAdmin = findViewById(R.id.etConsignmentDistanceAdmin);
+        etConsignmentWeightAdmin = findViewById(R.id.etConsignmentWeightAdmin);
         tvImageNameAdmin = findViewById(R.id.tvImageNameAdmin);
         tvImageNameAdmin.setVisibility(View.GONE);
         etSenderAddressAdmin = findViewById(R.id.etSenderAddressAdmin);
         etReceiverNameAdmin = findViewById(R.id.etReceiverNameAdmin);
         etReceiverPhoneAdmin = findViewById(R.id.etReceiverPhoneAdmin);
+        etSenderNameAdmin  = findViewById(R.id.etSenderNameAdmin);
         etProductDescriptionAdmin = findViewById(R.id.etDescriptionAdmin);
         etSenderAddressAdmin.setEnabled(true);
         spinnerAdmin = findViewById(R.id.spinnerAdmin);
@@ -154,14 +159,15 @@ public class AdminBookConsignment extends Activity {
                     TimePickerDialog timePickerDialog = new TimePickerDialog(AdminBookConsignment.this,
                             new TimePickerDialog.OnTimeSetListener() {
                                 @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay,
-                                                      int minute) {
+                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                     if (hourOfDay > 12) {
                                         int hr = hourOfDay - 12;
-                                        etTimeAdmin.setText(hr + ":" + minute);
+                                        String formattedTime = String.format(Locale.getDefault(), "%02d:%02d", hr, minute);
+                                        etTimeAdmin.setText(formattedTime);
                                         time = etTimeAdmin.getText().toString();
                                     } else {
-                                        etTimeAdmin.setText(hourOfDay + ":" + minute);
+                                        String formattedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
+                                        etTimeAdmin.setText(formattedTime);
                                     }
                                 }
                             }, hour, minute, false);
@@ -169,6 +175,7 @@ public class AdminBookConsignment extends Activity {
                 }
             }
         });
+
 
         spinnerAdmin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -225,17 +232,28 @@ public class AdminBookConsignment extends Activity {
                     ReceiverPhone = etReceiverPhoneAdmin.getText().toString();
                     ReceiverAddress = etReceiverAddressAdmin.getText().toString();
                     date = etDateAdmin.getText().toString();
+                    SenderName = etSenderNameAdmin.getText().toString();
                     time = etTimeAdmin.getText().toString();
                     itemCategory = spinnerAdmin.getSelectedItem().toString();
                     itemQuantity = quantitySpinnerAdmin.getSelectedItem().toString();
                     ProductDescription = etProductDescriptionAdmin.getText().toString();
                     latitude = latitude;
                     longitude = longitude;
+                    weight=etConsignmentWeightAdmin.getText().toString();
+                    distance=etConsignmentDistanceAdmin.getText().toString();
+                    String price;
+                    Double q = Double.parseDouble(itemQuantity);
+                    int onekm = 40;
+                    int onekg = 50;
+                    Double d = Double.parseDouble(distance);
+                    Double w = Double.parseDouble(weight);
+                    Double p = (w * onekg) + (d * onekm);
+                    p = p * q;
+                    price = String.valueOf(p);
                     url = url;
                     ccount = ccount + 1;
                     String consignmentId = userId.toLowerCase(Locale.ROOT).substring(0, 4) + ccount;
-
-                    Consignment con = new Consignment(SenderAddress, ReceiverAddress, ReceiverName, ReceiverPhone, "Picked", date, time, itemCategory, itemQuantity, ProductDescription, consignmentId, latitude, longitude, url, "", "", "", "", mAuth.getUid());
+                    Consignment con = new Consignment(SenderAddress, ReceiverAddress, ReceiverName, ReceiverPhone, "Picked", date, time, itemCategory, itemQuantity, ProductDescription, consignmentId, latitude, longitude, url, "", price, weight, "", mAuth.getUid());
                     usersRef.child("consignment").child(userId).child(consignmentId).setValue(con);
                     progressBarAdmin.setVisibility(View.GONE);
 
@@ -257,6 +275,8 @@ public class AdminBookConsignment extends Activity {
                     Intent intent = new Intent(AdminBookConsignment.this, ConsignmentBookedAnimation.class);
                     intent.putExtra("userType", "Admin");
                     intent.putExtra("id", consignmentId);
+                    intent.putExtra("senderName", SenderName);
+                    intent.putExtra("distance", distance);
                     startActivity(intent);
                     finish();
                 }

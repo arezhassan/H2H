@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#EDEDED"
     tools:context=".EditAdminBookedConsignment">
 
@@ -13,8 +13,10 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,7 +42,7 @@
                 android:layout_height="16dp"
                 android:layout_marginStart="20dp"
                 android:src="@drawable/baseline_category_24"
-                app:layout_constraintBottom_toTopOf="@+id/tvItemCategoryAdmin"
+                app:layout_constraintBottom_toTopOf="@+id/tvItemCategoryAdmin1"
                 app:layout_constraintEnd_toStartOf="@+id/textView66"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView66" />
@@ -71,40 +73,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView54"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Sender"
-                android:textColor="#CD000000"
-                app:layout_constraintStart_toEndOf="@+id/imageView19"
-                app:layout_constraintTop_toBottomOf="@+id/textView53" />
-
-            <TextView
-                android:id="@+id/tvSenderAdmin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="3dp"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView54"
-                tools:text="Arez Hassan" />
-
-            <TextView
                 android:id="@+id/textView56"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:text="Receiver"
                 android:textColor="#CD000000"
                 app:layout_constraintStart_toEndOf="@+id/imageView20"
-                app:layout_constraintTop_toBottomOf="@+id/tvSenderAdmin" />
+                app:layout_constraintTop_toBottomOf="@+id/textView53" />
 
             <TextView
-                android:id="@+id/tvReceiverAdmin"
+                android:id="@+id/tvReceiverAdmin1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -124,10 +102,10 @@
                 android:text="Booked Time"
                 android:textColor="#CD000000"
                 app:layout_constraintStart_toEndOf="@+id/imageView21"
-                app:layout_constraintTop_toBottomOf="@+id/tvReceiverAdmin" />
+                app:layout_constraintTop_toBottomOf="@+id/tvReceiverAdmin1" />
 
             <TextView
-                android:id="@+id/tvBookedTimeAdmin"
+                android:id="@+id/tvBookedTimeAdmin1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -148,10 +126,10 @@
                 android:text="Booked Date"
                 android:textColor="#CD000000"
                 app:layout_constraintStart_toEndOf="@+id/imageView22"
-                app:layout_constraintTop_toBottomOf="@+id/tvBookedTimeAdmin" />
+                app:layout_constraintTop_toBottomOf="@+id/tvBookedTimeAdmin1" />
 
             <TextView
-                android:id="@+id/tvBookedDateAdmin"
+                android:id="@+id/tvBookedDateAdmin1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -171,10 +149,10 @@
                 android:text="Status"
                 android:textColor="#CD000000"
                 app:layout_constraintStart_toEndOf="@+id/imageView23"
-                app:layout_constraintTop_toBottomOf="@+id/tvBookedDateAdmin" />
+                app:layout_constraintTop_toBottomOf="@+id/tvBookedDateAdmin1" />
 
             <TextView
-                android:id="@+id/tvStatusAdmin"
+                android:id="@+id/tvStatusAdmin1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -195,10 +173,10 @@
                 android:text="Weight"
                 android:textColor="#CD000000"
                 app:layout_constraintStart_toEndOf="@+id/imageView24"
-                app:layout_constraintTop_toBottomOf="@+id/tvStatusAdmin" />
+                app:layout_constraintTop_toBottomOf="@+id/tvStatusAdmin1" />
 
             <TextView
-                android:id="@+id/tvWeightAdmin"
+                android:id="@+id/tvWeightAdmin1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -218,10 +196,10 @@
                 android:text="Item Category"
                 android:textColor="#CD000000"
                 app:layout_constraintStart_toEndOf="@+id/imageView25"
-                app:layout_constraintTop_toBottomOf="@+id/tvWeightAdmin" />
+                app:layout_constraintTop_toBottomOf="@+id/tvWeightAdmin1" />
 
             <TextView
-                android:id="@+id/tvItemCategoryAdmin"
+                android:id="@+id/tvItemCategoryAdmin1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -235,21 +213,7 @@
                 tools:text="Electronics" />
 
             <TextView
-                android:id="@+id/tvDistanceAdmin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="3dp"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="TextView"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView55"
-                tools:text="4.0 Km" />
-
-            <TextView
-                android:id="@+id/tvPriceAdmin"
+                android:id="@+id/tvPriceAdmin1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
@@ -270,20 +234,10 @@
                 android:text="Item Quantity"
                 android:textColor="#CD000000"
                 app:layout_constraintStart_toEndOf="@+id/imageView26"
-                app:layout_constraintTop_toBottomOf="@+id/tvItemCategoryAdmin" />
+                app:layout_constraintTop_toBottomOf="@+id/tvItemCategoryAdmin1" />
 
             <TextView
-                android:id="@+id/textView55"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Distance"
-                android:textColor="#CD000000"
-                app:layout_constraintStart_toEndOf="@+id/imageView32"
-                app:layout_constraintTop_toBottomOf="@+id/tvItemQuantityAdmin" />
-
-            <TextView
-                android:id="@+id/tvItemQuantityAdmin"
+                android:id="@+id/tvItemQuantityAdmin1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -296,53 +250,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView68" />
 
             <Button
-                android:id="@+id/btnSaveConsignment"
+                android:id="@+id/btnChangeStatus1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
                 android:backgroundTint="#4CAF50"
-                android:text="Assign"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                app:cornerRadius="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btnDiscardConsignment"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider10" />
-
-            <Button
-                android:id="@+id/btnDiscardConsignment"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:backgroundTint="#F44336"
-                android:text="Discard"
+                android:text="Change Status"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 app:cornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.271"
-                app:layout_constraintStart_toEndOf="@+id/btnSaveConsignment"
-                app:layout_constraintTop_toBottomOf="@id/divider10"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <ImageView
-                android:id="@+id/imageView19"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginStart="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView54"
-                app:layout_constraintEnd_toStartOf="@+id/textView54"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView54"
-                app:srcCompat="@drawable/baseline_perm_identity_24" />
+                app:layout_constraintTop_toBottomOf="@id/spinnerStatus1"
+                app:layout_constraintVertical_bias="1.0" />
 
             <ImageView
                 android:id="@+id/imageView20"
@@ -399,7 +323,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
-                android:id="@+id/SpinnerRiders"
+                android:id="@+id/SpinnerRiders1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -418,30 +342,36 @@
                 android:background="?android:attr/listDivider"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPriceAdmin" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPriceAdmin1" />
 
-            <ImageView
-                android:id="@+id/imageView32"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
+            <Spinner
+                android:id="@+id/spinnerStatus1"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
                 android:layout_marginStart="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView55"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/etbackground"
+                android:entries="@array/selectStatus"
+                android:gravity="center"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView55"
-                app:srcCompat="@drawable/baseline_social_distance_24" />
+                app:layout_constraintTop_toBottomOf="@id/divider10" />
 
             <TextView
                 android:id="@+id/textView59"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-condensed"
                 android:text="Total Consignment Bill"
                 android:textColor="#1B1B1B"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDistanceAdmin" />
+                app:layout_constraintTop_toBottomOf="@+id/tvItemQuantityAdmin1" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

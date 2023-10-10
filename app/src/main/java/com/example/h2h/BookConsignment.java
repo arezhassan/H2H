@@ -211,34 +211,24 @@ public class BookConsignment extends Fragment {
             public void onFocusChange(View view, boolean b) {
                 if (view.hasFocus()) {
                     final Calendar c = Calendar.getInstance();
-
-                    // on below line we are getting our hour, minute.
                     int hour = c.get(Calendar.HOUR_OF_DAY);
                     int minute = c.get(Calendar.MINUTE);
-
-                    // on below line we are initializing our Time Picker Dialog
                     TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
                             new TimePickerDialog.OnTimeSetListener() {
                                 @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay,
-                                                      int minute) {
-                                    // on below line we are setting selected time
-                                    // in our text view.
-                                    if (hourOfDay>12){
-                                        int hr=hourOfDay-12;
-                                        etTime.setText(hr + ":" + minute);
+                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                                    if (hourOfDay > 12) {
+                                        int hr = hourOfDay - 12;
+                                        String formattedTime = String.format(Locale.getDefault(), "%02d:%02d", hr, minute);
+                                        etTime.setText(formattedTime);
                                         time = etTime.getText().toString();
-                                    }else{
-                                        etTime.setText(hourOfDay + ":" + minute);
-
+                                    } else {
+                                        String formattedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
+                                        etTime.setText(formattedTime);
                                     }
-
                                 }
                             }, hour, minute, false);
-                    // at last we are calling show to
-                    // display our time picker dialog.
                     timePickerDialog.show();
-
                 }
             }
         });

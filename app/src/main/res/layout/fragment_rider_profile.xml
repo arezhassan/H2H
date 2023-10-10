@@ -33,12 +33,11 @@
                     android:id="@+id/textView42"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="Rider Name"
+                    android:text="Name"
                     android:textColor="#CD000000"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView16"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -58,13 +57,12 @@
                     android:id="@+id/textView44"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="Rider CNIC"
+                    android:text="CNIC"
                     android:textColor="#CD000000"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvPRiderName" />
+                    app:layout_constraintStart_toEndOf="@+id/imageView17"
+                    app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
                 <TextView
                     android:id="@+id/tvPRiderCNIC"
@@ -83,13 +81,12 @@
                     android:id="@+id/textView46"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="sans-serif-condensed"
-                    android:text="Rider Phone"
+                    android:text="Phone"
                     android:textColor="#CD000000"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvPRiderCNIC" />
+                    app:layout_constraintStart_toEndOf="@+id/imageView18"
+                    app:layout_constraintTop_toBottomOf="@+id/divider8" />
 
                 <TextView
                     android:id="@+id/tvPRiderPhone"
@@ -108,33 +105,36 @@
                     android:id="@+id/imageView16"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="20dp"
                     android:src="@drawable/account"
                     android:tint="#000000"
                     app:layout_constraintBottom_toBottomOf="@+id/textView42"
-                    app:layout_constraintStart_toEndOf="@+id/textView42"
+                    app:layout_constraintEnd_toStartOf="@+id/textView42"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView42" />
 
                 <ImageView
                     android:id="@+id/imageView17"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="20dp"
                     android:src="@drawable/baseline_pin_24"
                     android:tint="#000000"
                     app:layout_constraintBottom_toBottomOf="@+id/textView44"
-                    app:layout_constraintStart_toEndOf="@+id/textView44"
+                    app:layout_constraintEnd_toStartOf="@+id/textView44"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView44" />
 
                 <ImageView
                     android:id="@+id/imageView18"
                     android:layout_width="18dp"
                     android:layout_height="18dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="20dp"
                     android:src="@drawable/baseline_local_phone_24"
                     android:tint="#000000"
                     app:layout_constraintBottom_toBottomOf="@+id/textView46"
-                    app:layout_constraintStart_toEndOf="@+id/textView46"
+                    app:layout_constraintEnd_toStartOf="@+id/textView46"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView46" />
 
                 <Button
@@ -151,6 +151,44 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:rippleColor="@color/white" />
+
+                <View
+                    android:id="@+id/divider7"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPRiderName" />
+
+                <View
+                    android:id="@+id/divider8"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPRiderCNIC" />
+
+                <View
+                    android:id="@+id/divider9"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="?android:attr/listDivider"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPRiderPhone" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 

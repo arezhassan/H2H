@@ -52,7 +52,7 @@ public class AdminEditConsignment extends AppCompatActivity {
         if (i != null) {
             list = getIntent().getParcelableArrayListExtra("consignments");
         }
-        adapter = new RiderConsignmentAdapter(filteredlist, this);
+        adapter = new RiderConsignmentAdapter(filteredlist, this, new ArrayList<Rider>());
     }
 
 

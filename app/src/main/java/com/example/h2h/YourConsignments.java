@@ -101,8 +101,7 @@ public class YourConsignments extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(requireActivity(), error.toString(), Toast.LENGTH_SHORT).show();
-            }
+             }
         });
     }
 }

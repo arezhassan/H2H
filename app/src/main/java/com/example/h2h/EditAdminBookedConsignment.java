@@ -25,10 +25,15 @@ public class EditAdminBookedConsignment extends AppCompatActivity {
 
     private TextView tvReceiverAdmin;
     private TextView tvBookedTimeAdmin;
+
+    String distance;
     private TextView tvBookedDateAdmin;
     private TextView tvStatusAdmin;
     private TextView tvWeightAdmin;
     private TextView tvItemCategoryAdmin;
+    private TextView tvPriceAdmin;
+
+    private TextView tvDistanceAdmin;
     private TextView tvItemQuantityAdmin;
 
     ArrayList<Rider> riders;
@@ -38,6 +43,8 @@ public class EditAdminBookedConsignment extends AppCompatActivity {
 
     private String conId;
     private String userid;
+
+    private String SenderName;
 
     private Button btnSaveConsignment, btnDiscardConsignment;
 
@@ -54,6 +61,7 @@ public class EditAdminBookedConsignment extends AppCompatActivity {
     }
 
     private void getDataFromIntent() {
+        SenderName = getIntent().getStringExtra("senderName");
         conId = getIntent().getStringExtra("id");
         getConsignmentData();
     }
@@ -122,14 +130,16 @@ public class EditAdminBookedConsignment extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 consignment = snapshot.getValue(Consignment.class);
                 if (consignment != null) {
-                    tvSenderAdmin.setText(consignment.getSenderAddress());
+                    tvSenderAdmin.setText(SenderName);
                     tvReceiverAdmin.setText(consignment.getReceiverName());
                     tvBookedTimeAdmin.setText(consignment.getTime());
                     tvBookedDateAdmin.setText(consignment.getPickupDateTime());
                     tvStatusAdmin.setText(consignment.getStatus());
-                    tvWeightAdmin.setText("To be Added by (Rider)");
+                    tvWeightAdmin.setText(consignment.getWeight());
                     tvItemCategoryAdmin.setText(consignment.getItemCategory());
                     tvItemQuantityAdmin.setText(consignment.getItemQuantity());
+                    tvPriceAdmin.setText("Rs. "+consignment.getPrice());
+                    tvDistanceAdmin.setText(distance);
                 }
             }
 
@@ -150,9 +160,12 @@ public class EditAdminBookedConsignment extends AppCompatActivity {
         tvBookedDateAdmin = findViewById(R.id.tvBookedDateAdmin);
         tvStatusAdmin = findViewById(R.id.tvStatusAdmin);
         tvWeightAdmin = findViewById(R.id.tvWeightAdmin);
+        tvPriceAdmin = findViewById(R.id.tvPriceAdmin);
+        tvDistanceAdmin=findViewById(R.id.tvDistanceAdmin);
         tvItemCategoryAdmin = findViewById(R.id.tvItemCategoryAdmin);
         tvItemQuantityAdmin = findViewById(R.id.tvItemQuantityAdmin);
         btnSaveConsignment = findViewById(R.id.btnSaveConsignment);
         btnDiscardConsignment = findViewById(R.id.btnDiscardConsignment);
+        distance=getIntent().getStringExtra("distance");
     }
 }

@@ -1,15 +1,15 @@
 package com.example.h2h;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class RiderConsignments extends Fragment {
@@ -26,6 +27,8 @@ public class RiderConsignments extends Fragment {
     RiderConsignmentAdapter adapter;
     ArrayList<Consignment> consignments;
     FirebaseAuth mAuth;
+
+    ArrayList<Rider> riders;
 
     TextView tvAssignedConsignments;
 
@@ -43,7 +46,7 @@ public class RiderConsignments extends Fragment {
         view = inflater.inflate(R.layout.fragment_rider_consignments, container, false);
         rvRiderConsignments = view.findViewById(R.id.rvRiderConsignments);
         tvAssignedConsignments = view.findViewById(R.id.tvAssignedConsignments);
-        adapter = new RiderConsignmentAdapter(consignments, getActivity());
+        adapter = new RiderConsignmentAdapter(consignments, getActivity(),riders);
         rvRiderConsignments.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvRiderConsignments.setAdapter(adapter);
 
@@ -72,7 +75,7 @@ public class RiderConsignments extends Fragment {
                         }
                     }
                 }
-                if(consignments.size() == 0)
+                if (consignments.size() == 0)
                     tvAssignedConsignments.setText("No Consignments to show..");
 
                 // Notify the adapter that the data has changed
@@ -85,6 +88,25 @@ public class RiderConsignments extends Fragment {
                 // Handle errors here
             }
         });
+        riders = new ArrayList<>();
+        DatabaseReference ridersReference = FirebaseDatabase.getInstance().getReference("riders");
+        ridersReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    Rider rider = data.getValue(Rider.class);
+                    if (rider != null)
+                        riders.add(rider);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
     }
 
 }

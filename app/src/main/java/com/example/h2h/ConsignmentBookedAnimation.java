@@ -5,13 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 
 public class ConsignmentBookedAnimation extends AppCompatActivity {
     LottieAnimationView anim;
     String userType;
-    String conId;
+    String conId, distance;
+
+    TextView tvAnimationMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +23,13 @@ public class ConsignmentBookedAnimation extends AppCompatActivity {
         if (getIntent().getStringExtra("userType")!=null) {
              userType = getIntent().getStringExtra("userType");
              conId = getIntent().getStringExtra("id");
+             distance=getIntent().getStringExtra("distance");
+             tvAnimationMessage = findViewById(R.id.tvAnimationMessage);
+            if (userType.equals("Admin")){
+                tvAnimationMessage.setText("Consignment Booked. Navigating to next pannel..");
+            }
         }
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -29,6 +38,8 @@ public class ConsignmentBookedAnimation extends AppCompatActivity {
                 if (userType!=null && !userType.isEmpty() && userType.equals("Admin")) {
                     intent = new Intent(ConsignmentBookedAnimation.this, EditAdminBookedConsignment.class);
                     intent.putExtra("id",conId);
+                    intent.putExtra("senderName", getIntent().getStringExtra("senderName"));
+                    intent.putExtra("distance",distance);
                 } else {
                     intent = new Intent(ConsignmentBookedAnimation.this, MainActivity.class);
                 }
