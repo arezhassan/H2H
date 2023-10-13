@@ -213,25 +213,41 @@ public class BookConsignment extends Fragment {
                     final Calendar c = Calendar.getInstance();
                     int hour = c.get(Calendar.HOUR_OF_DAY);
                     int minute = c.get(Calendar.MINUTE);
+
                     TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
                             new TimePickerDialog.OnTimeSetListener() {
                                 @Override
                                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    if (hourOfDay > 12) {
-                                        int hr = hourOfDay - 12;
-                                        String formattedTime = String.format(Locale.getDefault(), "%02d:%02d", hr, minute);
-                                        etTime.setText(formattedTime);
-                                        time = etTime.getText().toString();
+                                    String amPm;
+                                    int hr;
+
+                                    if (hourOfDay >= 12) {
+                                        amPm = "PM";
+                                        if (hourOfDay > 12) {
+                                            hr = hourOfDay - 12;
+                                        } else {
+                                            hr = hourOfDay;
+                                        }
                                     } else {
-                                        String formattedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
-                                        etTime.setText(formattedTime);
+                                        amPm = "AM";
+                                        if (hourOfDay == 0) {
+                                            hr = 12;
+                                        } else {
+                                            hr = hourOfDay;
+                                        }
                                     }
+
+                                    String formattedTime = String.format(Locale.getDefault(), "%02d:%02d %s", hr, minute, amPm);
+                                    etTime.setText(formattedTime);
+                                    time = formattedTime; // Save the time with AM/PM to the 'time' variable
                                 }
                             }, hour, minute, false);
+
                     timePickerDialog.show();
                 }
             }
         });
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
